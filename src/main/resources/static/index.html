@@ -1,0 +1,69 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+
+<!--<meta charset="utf-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--<meta name="description" content="">-->
+<!--<meta name="author" content="">-->
+
+<!--<div th:replace="fragments/header :: header-css"/>-->
+<!--&lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+<!--&lt;!&ndash;<link rel="stylesheet" th:href="@{/main.css}"/></head>&ndash;&gt;-->
+
+<!--<body>-->
+<!--<div th:replace="fragments/header :: header"></div>-->
+<!--<p class="info" th:if="${logoutMessage}" th:text="${logoutMessage}"/>-->
+<!--<h1 style="color: deeppink">strona testowa</h1>-->
+<!--<div th:replace="fragments/footer :: footer"></div>-->
+
+<!--</body>-->
+
+<!--</html>-->
+
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--<title>Getting Started: Serving Web Content</title>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<p>Get your greeting <a href="/greeting">here</a></p>-->
+<!--<br>-->
+<!--<form th:action="@{/add}" method="post">-->
+<!--<div th:if="${error}" class="alert alert-danger">-->
+<!--<span th:text="${error}"/>-->
+<!--</div>-->
+<!--<h1 class="h3 mb-3 font-weight-normal">submit name and email</h1>-->
+<!--<label for="name" class="sr-only">name</label>-->
+<!--<input type="name" id="name" class="form-control" th:field="${form.name}" placeholder="name" required autofocus>-->
+<!--<label for="inputEmail" class="sr-only">Email address</label>-->
+<!--<input type="email" id="inputEmail" class="form-control" th:field="${form.email}" placeholder="email" required>-->
+<!--<button class="btn btn-lg btn-primary btn-block" type="submit">submit</button>-->
+<!--<button class="btn btn-lg btn-primary btn-block" type="">show all</button>-->
+
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>dej dane</title>
+</head>
+<body style="background-color: white">
+<form action="/submit">
+    <label for="name">name</label>
+    <input type="text" name="name" id="name">
+    <label for="email">email address</label>
+    <input name="email" type="text" id="email"><br>
+
+    <button>submit</button>
+</form>
+<form action="/all">
+    <button>show all</button>
+</form>
+</body>
+</html>
