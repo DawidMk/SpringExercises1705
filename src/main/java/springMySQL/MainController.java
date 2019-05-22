@@ -7,16 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-//@RequestMapping(path="/demo")
 public class MainController {
     @Autowired
     private UserRepository userRepository;
-/*
-    @GetMapping("/")
-    public String ok() {
-        return "index";
-    }
-*/
+
     @GetMapping(path = "/submit")
     public @ResponseBody String addNewUser (@RequestParam String name,
                                             @RequestParam String email) {
