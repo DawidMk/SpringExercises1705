@@ -2,28 +2,49 @@ package springMySQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
+    @Autowired
+    UserAddService userAddService;
+    @Autowired
+    UserDAO userDAO;
 
-    @GetMapping(path = "/submit")
-    public @ResponseBody String addNewUser (@RequestParam String name,
-                                            @RequestParam String email) {
+    /*
+            @GetMapping(path = "/submit")
+            public @ResponseBody
+            String addNewUser(@RequestParam String name,
+                              @RequestParam String email) {
 
-        User n = new User();
-        n.setName(name);
-        n.setEmail(email);
-        userRepository.save(n);
-        return "Saved";
+                UserAddingDTO n = new UserAddingDTO();
+                n.setName(name);
+                n.setEmail(email);
+                userAddService.addUser(n);
+                return "Saved";
+            }
+    */
+//    @GetMapping(path = "/submit")
+    @RequestMapping(value = "/submit", method = RequestMethod.GET)
+    public String show(Model model) {
+        model.addAttribute("form", new UserAddingDTO());
+        return "index";
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<User> getAllUsers() {
+    @RequestMapping(value = "/submit", method = RequestMethod.POST)
+    public String add(UserAddingDTO dto, Model model) {
+        model.addAttribute("form", dto);
+        userAddService.addUser(dto);
+        return "success";
+    }
+
+
+    @GetMapping(path = "/all")
+    public @ResponseBody
+    Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 

@@ -1,5 +1,8 @@
 package springMySQL;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserDAO {
     private void rewriteDataToUser(UserAddingDTO dto, User user) {
         user.setName(dto.getName());
