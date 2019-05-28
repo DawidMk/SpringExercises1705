@@ -27,14 +27,15 @@ public class MainController {
                 return "Saved";
             }
     */
-//    @GetMapping(path = "/submit")
-    @RequestMapping(value = "/submit", method = RequestMethod.GET)
+    @GetMapping(path = "/submit")
+//    @RequestMapping(value = "/submit", method = RequestMethod.GET)
     public String show(Model model) {
         model.addAttribute("form", new UserAddingDTO());
         return "index";
     }
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
+    @PostMapping(path = "/submit")
+//    @RequestMapping(value = "/submit", method = RequestMethod.POST)
     public String add(UserAddingDTO dto, Model model) {
         model.addAttribute("form", dto);
         userAddService.addUser(dto);
