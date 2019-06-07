@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <meta charset="UTF-8">
     <title>find user</title>
 </head>
 <body style="background-color: white">
 <form action="/findByName">
-    <label for="name">name</label>
-    <input type="text" name="name" id="name">
+    <label for="login">login</label>
+    <input type="text" login="login" id="login">
     <button>search</button>
 </form>
 <br>
 <form action="/findByEmail">
     <label for="email">email address</label>
-    <input name="email" type="text" id="email">
+    <input login="email" type="text" id="email">
     <button>search</button>
 </form>
 <br>
-<form action="index.html">
+<form action="/index.html">
     <button>go back!</button>
 </form>
 </body>
