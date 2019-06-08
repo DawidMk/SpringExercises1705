@@ -2,6 +2,7 @@ package springMySQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springMySQL.entities.BaseEntity;
 import springMySQL.entities.User;
 
 @Service
@@ -9,7 +10,7 @@ public class OneDAO {
     @Autowired
     UserRepository userRepository;
 
-    public void addToDb(AddDTO dto, Object o) {
+    public void addToDb(AddDTO dto, BaseEntity o) {
         userRepository.save(o);
     }
 

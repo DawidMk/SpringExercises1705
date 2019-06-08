@@ -44,19 +44,20 @@ public class addService {
         person.setLastName(dto.getLastName());
         person.setAddress(address);
         person.setUser(user);
-        if (!person.getPseudonyms().contains(pseudonym)) {
+
+        if (person.getPseudonyms() != null && !person.getPseudonyms().contains(pseudonym)) {
             person.getPseudonyms().add(pseudonym);
         }
         //pseudonym
         pseudonym.setPseudonym(dto.getPseudonym());
-        if(!pseudonym.getPersons().contains(person)){
+        if (pseudonym.getPersons() != null && !pseudonym.getPersons().contains(person)) {
             pseudonym.getPersons().add(person);
         }
 
         //address
         address.setStreetName(dto.getStreet());
         address.setHouseNumber(dto.getHouseNumber());
-        if(!address.getPersons().contains(person)){
+        if (address.getPersons() != null && !address.getPersons().contains(person)) {
             address.getPersons().add(person);
         }
 
@@ -92,7 +93,6 @@ public class addService {
         a.setStreetName(dto.getStreet());
         a.setHouseNumber(dto.getHouseNumber());
     }
-
 
 
     private void rewriteDataToPseudonym(AddDTO dto, Pseudonym p) {

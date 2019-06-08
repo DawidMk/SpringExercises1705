@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "pseudonyms")
 @Getter
 @Setter
-public class Pseudonym {
+public class Pseudonym  extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
