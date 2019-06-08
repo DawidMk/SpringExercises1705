@@ -23,6 +23,6 @@ public class Address extends BaseEntity {
     @Column(name = "house_number")
     private String houseNumber;
 
-    @OneToMany(mappedBy = "address")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "address")
     private List<Person> persons;
 }

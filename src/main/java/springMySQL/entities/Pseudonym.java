@@ -18,6 +18,6 @@ public class Pseudonym  extends BaseEntity{
     @Column(name = "pseudonym")
     private String pseudonym;
 
-    @ManyToMany(mappedBy = "pseudonyms")
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "pseudonyms")
     private List<Person> persons;
 }

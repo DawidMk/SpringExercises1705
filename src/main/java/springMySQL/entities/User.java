@@ -21,7 +21,7 @@ public class User extends BaseEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "person_id")
     private Person person;
 

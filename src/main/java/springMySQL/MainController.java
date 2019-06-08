@@ -46,7 +46,7 @@ public class MainController {
     //    @PostMapping(path = "/submit")
     @RequestMapping(value = "/submit", method = {RequestMethod.GET, RequestMethod.POST})
     public String add(AddDTO dto, Model model) {
-        Map<String, String> errorMap = userValidationService.validate(dto);
+//        Map<String, String> errorMap = userValidationService.validate(dto);
         model.addAttribute("form", dto);
         addService.addHuman(dto);
 /*//todo make this work

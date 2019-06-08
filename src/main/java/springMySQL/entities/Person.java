@@ -22,15 +22,16 @@ public class Person extends BaseEntity{
     @Column(name = "lastName")
     private String lastName;
 
-    @OneToOne(mappedBy = "person")
+    @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "person")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @ManyToMany
-    @JoinTable(name = "persons_pseudonyms",
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "persons_pseudonyms",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "pseudonym_id"))
     private List<Pseudonym> pseudonyms;
