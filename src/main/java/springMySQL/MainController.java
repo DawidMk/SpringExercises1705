@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springMySQL.entities.User;
-import springMySQL.services.UserAddService;
+import springMySQL.services.addService;
 import springMySQL.services.UserValidationService;
 
 import java.util.Map;
@@ -15,9 +15,9 @@ public class MainController {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    UserAddService userAddService;
+    addService addService;
     @Autowired
-    UserDAO userDAO;
+    OneDAO oneDAO;
     @Autowired
     UserValidationService userValidationService;
 
@@ -27,10 +27,10 @@ public class MainController {
             String addNewUser(@RequestParam String login,
                               @RequestParam String email) {
 
-                UserAddingDTO n = new UserAddingDTO();
+                AddDTO n = new AddDTO();
                 n.setLogin(login);
                 n.setEmail(email);
-                userAddService.addUser(n);
+                addService.addHuman(n);
                 return "Saved";
             }
     */
@@ -39,20 +39,20 @@ public class MainController {
     @GetMapping(path = "/submit")
 //    @RequestMapping(value = "/submit", method = RequestMethod.GET)
     public String show(Model model) {
-        model.addAttribute("form", new UserAddingDTO());
+        model.addAttribute("form", new AddDTO());
         return "index.html";
     }
 
     //    @PostMapping(path = "/submit")
     @RequestMapping(value = "/submit", method = {RequestMethod.GET, RequestMethod.POST})
-    public String add(UserAddingDTO dto, Model model) {
+    public String add(AddDTO dto, Model model) {
         Map<String, String> errorMap = userValidationService.validate(dto);
         model.addAttribute("form", dto);
-        userAddService.addUser(dto);
+        addService.addHuman(dto);
 /*//todo make this work
         if (errorMap.isEmpty()) {
             try {
-                userAddService.addUser(dto);
+                addService.addHuman(dto);
             } catch (UserExistsException e) {
                 model.addAttribute("userExistsExceptionMessage", e.getMessage());
                 return e.getMessage();
@@ -68,7 +68,7 @@ public class MainController {
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<User> getAllUsers() {
+    Iterable<Object> getAllUsers() {
         return userRepository.findAll();
     }
 

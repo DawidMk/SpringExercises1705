@@ -20,13 +20,13 @@ public class Person {
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
-    private String lastNAme;
+    private String lastName;
 
     @OneToOne(mappedBy = "person")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @ManyToMany

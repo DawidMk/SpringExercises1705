@@ -1,13 +1,13 @@
 package springMySQL.services;
 
 import org.springframework.stereotype.Service;
-import springMySQL.UserAddingDTO;
+import springMySQL.AddDTO;
 
 import java.util.HashMap;
 import java.util.Map;
 @Service
 public class UserValidationService {
-    public Map<String, String> validate(UserAddingDTO dto) {
+    public Map<String, String> validate(AddDTO dto) {
         Map<String, String> errorMap = new HashMap<>();
         String name = dto.getLogin();
         String email = dto.getEmail();

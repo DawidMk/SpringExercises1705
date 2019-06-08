@@ -3,7 +3,7 @@ package springMySQL;
 import lombok.Data;
 
 @Data
-public class UserAddingDTO {
+public class AddDTO {
     private String login;
     private String email;
     private String firstName;

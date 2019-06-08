@@ -19,6 +19,10 @@ public class Address {
     @Column(name = "street_name")
     private String streetName;
 
+
+    @Column(name = "house_number")
+    private String houseNumber;
+
     @OneToMany(mappedBy = "address")
     private List<Person> persons;
 }
