@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,10 +12,11 @@ import java.util.List;
 @Getter
 @Setter
 public class Address extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+//    @GenericGenerator(name = "native", strategy = "native")
+//    @Column(name = "id")
+//    private Integer id;
 
     @Column(name = "street_name")
     private String streetName;
@@ -23,6 +25,6 @@ public class Address extends BaseEntity {
     @Column(name = "house_number")
     private String houseNumber;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "address")
-    private List<Person> persons;
+    @OneToMany(mappedBy = "address", cascade = {CascadeType.ALL})
+    private List<Person> persons = new ArrayList<>();
 }

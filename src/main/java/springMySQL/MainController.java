@@ -4,16 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import springMySQL.entities.BaseEntity;
 import springMySQL.entities.User;
 import springMySQL.services.addService;
 import springMySQL.services.UserValidationService;
 
-import java.util.Map;
-
 @Controller
 public class MainController {
     @Autowired
-    UserRepository userRepository;
+    OneRepository oneRepository;
     @Autowired
     addService addService;
     @Autowired
@@ -68,20 +67,20 @@ public class MainController {
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<Object> getAllUsers() {
-        return userRepository.findAll();
+    Iterable<BaseEntity> getAll() {
+        return oneRepository.findAll();
     }
 
     @GetMapping(path = "/findByLogin")
     public @ResponseBody
     Iterable<User> getByName(@RequestParam String name) {
-        return userRepository.findByLogin(name);
+        return oneRepository.findByLogin(name);
     }
 
     @GetMapping(path = "/findByEmail")
     public @ResponseBody
     Iterable<User> getByEmail(@RequestParam String email) {
-        return userRepository.findByEmail(email);
+        return oneRepository.findByEmail(email);
     }
 
 

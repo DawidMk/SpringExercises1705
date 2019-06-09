@@ -8,12 +8,14 @@ import springMySQL.entities.Person;
 import springMySQL.entities.Pseudonym;
 import springMySQL.entities.User;
 
+import java.util.ArrayList;
+
 @Service
 public class addService {
 
     @Autowired
     OneDAO oneDAO;
-    UserRepository userRepository;
+    OneRepository oneRepository;
 
     public void addHuman(AddDTO dto) {
      /*   if (userExists(dto)) {
@@ -100,7 +102,7 @@ public class addService {
     }
 
     private boolean userExists(AddDTO dto) {
-        return userRepository.findByEmail(dto.getEmail()) != null;
+        return oneRepository.findByEmail(dto.getEmail()) != null;
     }
 
 }

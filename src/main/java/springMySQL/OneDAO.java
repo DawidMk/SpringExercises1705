@@ -8,10 +8,10 @@ import springMySQL.entities.User;
 @Service
 public class OneDAO {
     @Autowired
-    UserRepository userRepository;
+    OneRepository oneRepository;
 
     public void addToDb(AddDTO dto, BaseEntity o) {
-        userRepository.save(o);
+        oneRepository.save(o);
     }
 
     public User getFromDbByName(String name) {

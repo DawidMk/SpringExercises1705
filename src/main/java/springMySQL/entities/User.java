@@ -11,17 +11,18 @@ import javax.persistence.*;
 @Setter
 public class User extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+//    @GenericGenerator(name = "native", strategy = "native")
+//    @Column(name = "id")
+//    private Integer id;
 
     @Column(name = "login")
     private String login;
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
 
