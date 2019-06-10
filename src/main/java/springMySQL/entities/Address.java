@@ -12,15 +12,9 @@ import java.util.List;
 @Getter
 @Setter
 public class Address extends BaseEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-//    @GenericGenerator(name = "native", strategy = "native")
-//    @Column(name = "id")
-//    private Integer id;
 
     @Column(name = "street_name")
     private String streetName;
-
 
     @Column(name = "house_number")
     private String houseNumber;

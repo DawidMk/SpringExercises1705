@@ -13,14 +13,10 @@ import java.util.List;
 @Getter
 @Setter
 public class Person extends BaseEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-//    @GenericGenerator(name = "native", strategy = "native")
-//    @Column(name = "id")
-//    private Integer id;
 
     @Column(name = "firstName")
     private String firstName;
+
     @Column(name = "lastName")
     private String lastName;
 
