@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import springMySQL.entities.BaseEntity;
-import springMySQL.entities.User;
-import springMySQL.services.addService;
+import springMySQL.entities.AppUser;
+import springMySQL.services.AddService;
 import springMySQL.services.UserValidationService;
 
 @Controller
@@ -14,7 +13,7 @@ public class MainController {
     @Autowired
     OneRepository oneRepository;
     @Autowired
-    addService addService;
+    AddService addService;
     @Autowired
     OneDAO oneDAO;
     @Autowired
@@ -29,7 +28,7 @@ public class MainController {
                 AddDTO n = new AddDTO();
                 n.setLogin(login);
                 n.setEmail(email);
-                addService.addHuman(n);
+                AddService.addHuman(n);
                 return "Saved";
             }
     */
@@ -51,7 +50,7 @@ public class MainController {
 /*//todo make this work
         if (errorMap.isEmpty()) {
             try {
-                addService.addHuman(dto);
+                AddService.addHuman(dto);
             } catch (UserExistsException e) {
                 model.addAttribute("userExistsExceptionMessage", e.getMessage());
                 return e.getMessage();
@@ -67,19 +66,19 @@ public class MainController {
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<BaseEntity> getAll() {
-        return oneRepository.findAll();
+    Iterable<AppUser> getAll() {
+        return oneRepository.findAllUsers();
     }
 
-    @GetMapping(path = "/findByLogin")
+    @RequestMapping(path = "/findByLogin", method = {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody
-    Iterable<User> getByName(@RequestParam String name) {
-        return oneRepository.findByLogin(name);
+    Iterable<AppUser> getByLogin(@RequestParam(value = "login") String login) {
+        return oneRepository.findByLogin(login);
     }
 
-    @GetMapping(path = "/findByEmail")
+    @RequestMapping(path = "/findByEmail", method = {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody
-    Iterable<User> getByEmail(@RequestParam String email) {
+    Iterable<AppUser> getByEmail(@RequestParam(value = "email") String email) {
         return oneRepository.findByEmail(email);
     }
 

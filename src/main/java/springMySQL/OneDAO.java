@@ -2,8 +2,8 @@ package springMySQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springMySQL.entities.AppUser;
 import springMySQL.entities.BaseEntity;
-import springMySQL.entities.User;
 
 @Service
 public class OneDAO {
@@ -14,12 +14,12 @@ public class OneDAO {
         oneRepository.save(o);
     }
 
-    public User getFromDbByName(String name) {
+    public AppUser getFromDbByName(String name) {
         //todo implement
         return null;
     }
 
-    public User getFromDbByEmail(String email) {
+    public AppUser getFromDbByEmail(String email) {
         //todo implement
         return null;
     }

@@ -1,5 +1,6 @@
 package springMySQL.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,8 +21,10 @@ public class Person extends BaseEntity {
     @Column(name = "lastName")
     private String lastName;
 
-    @OneToOne(mappedBy = "person", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    private User user;
+    @JsonBackReference
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "app_user_id")
+    private AppUser appUser;
 
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
@@ -32,5 +35,5 @@ public class Person extends BaseEntity {
             name = "persons_pseudonyms",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "pseudonym_id"))
-    private List<Pseudonym> pseudonyms = new ArrayList<>();
+    private List<Pseudonym> pseudonyms;
 }

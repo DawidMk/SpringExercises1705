@@ -2,18 +2,18 @@
 <!--<html xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <meta charset="UTF-8">
-    <title>find user</title>
+    <title>find appUser</title>
 </head>
 <body style="background-color: white">
-<form action="/findByName">
+<form action="/findByLogin">
     <label for="login">login</label>
-    <input type="text" login="login" id="login">
+    <input type="text" name="login" id="login">
     <button>search</button>
 </form>
 <br>
 <form action="/findByEmail">
     <label for="email">email address</label>
-    <input login="email" type="text" id="email">
+    <input type="text" name="email"  id="email">
     <button>search</button>
 </form>
 <br>

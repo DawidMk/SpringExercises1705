@@ -17,5 +17,5 @@ public class Pseudonym extends BaseEntity {
     private String pseudonym;
 
     @ManyToMany(mappedBy = "pseudonyms", cascade = {CascadeType.ALL})
-    private List<Person> persons = new ArrayList<>();
+    private List<Person> persons;
 }

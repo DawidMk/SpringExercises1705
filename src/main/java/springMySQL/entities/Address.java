@@ -20,5 +20,5 @@ public class Address extends BaseEntity {
     private String houseNumber;
 
     @OneToMany(mappedBy = "address", cascade = {CascadeType.ALL})
-    private List<Person> persons = new ArrayList<>();
+    private List<Person> persons;
 }

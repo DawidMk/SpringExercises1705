@@ -4,14 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springMySQL.*;
 import springMySQL.entities.Address;
+import springMySQL.entities.AppUser;
 import springMySQL.entities.Person;
 import springMySQL.entities.Pseudonym;
-import springMySQL.entities.User;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
-public class addService {
+public class AddService {
 
     @Autowired
     OneDAO oneDAO;
@@ -19,48 +21,69 @@ public class addService {
 
     public void addHuman(AddDTO dto) {
      /*   if (userExists(dto)) {
-            throw new UserExistsException("user " + dto.getEmail() + " already exists!");
+            throw new UserExistsException("appUser " + dto.getEmail() + " already exists!");
         } else {*/
-        User user = new User();
+         AppUser appUser = new AppUser();
+     if(!oneRepository.existsByEmail()) {
+         appUser = new AppUser();
+     }else{
+         Stream appUserStream = StreamSupport.stream(oneRepository.findByEmail(dto.getEmail()).spliterator(), false);
+         appUser = new AppUser();
+//         appUser = appUserStream.filter()
+     }
         Person person = new Person();
         Pseudonym pseudonym = new Pseudonym();
         Address address = new Address();
 
 
-        rewriteData(dto, user, person, pseudonym, address);
-        oneDAO.addToDb(dto, user);
+        rewriteData(dto, appUser, person, pseudonym, address);
+        oneDAO.addToDb(dto, appUser);
         oneDAO.addToDb(dto, person);
         oneDAO.addToDb(dto, pseudonym);
         oneDAO.addToDb(dto, address);
 
     }
 
-    private void rewriteData(AddDTO dto, User user, Person person, Pseudonym pseudonym, Address address) {
-        //user
-        user.setLogin(dto.getLogin());
-        user.setEmail(dto.getEmail());
-        user.setPerson(person);
+    private void rewriteData(AddDTO dto, AppUser appUser, Person person, Pseudonym pseudonym, Address address) {
+        //appUser
+        appUser.setLogin(dto.getLogin());
+        appUser.setEmail(dto.getEmail());
+        appUser.setPerson(person);
 
         //person
         person.setFirstName(dto.getFirstName());
         person.setLastName(dto.getLastName());
         person.setAddress(address);
-        person.setUser(user);
+        person.setAppUser(appUser);
 
-        if (person.getPseudonyms() != null && !person.getPseudonyms().contains(pseudonym)) {
+        if (person.getPseudonyms() == null) {
+            person.setPseudonyms(new ArrayList<>());
             person.getPseudonyms().add(pseudonym);
         }
+        if (!person.getPseudonyms().contains(pseudonym)) {
+            person.getPseudonyms().add(pseudonym);
+        }
+
         //pseudonym
         pseudonym.setPseudonym(dto.getPseudonym());
-        if (pseudonym.getPersons() != null && !pseudonym.getPersons().contains(person)) {
+        if (pseudonym.getPersons() != null) {
+            if (!pseudonym.getPersons().contains(person)) {
+                pseudonym.getPersons().add(person);
+            }
+        } else {
+            pseudonym.setPersons(new ArrayList<>());
             pseudonym.getPersons().add(person);
+
         }
+
 
         //address
         address.setStreetName(dto.getStreet());
         address.setHouseNumber(dto.getHouseNumber());
-        if (address.getPersons() != null && !address.getPersons().contains(person)) {
-            address.getPersons().add(person);
+        if (address.getPersons() != null) {
+            if (!address.getPersons().contains(person))
+
+                address.getPersons().add(person);
         }
 
 
@@ -86,7 +109,7 @@ public class addService {
     }
 
 
-    private void rewriteDataToUser(AddDTO dto, User u) {
+    private void rewriteDataToUser(AddDTO dto, AppUser u) {
         u.setLogin(dto.getLogin());
         u.setEmail(dto.getEmail());
     }
